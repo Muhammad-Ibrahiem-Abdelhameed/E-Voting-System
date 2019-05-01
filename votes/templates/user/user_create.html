@@ -1,0 +1,52 @@
+{% extends "dashboard.html" %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+    <br/>
+    <h2>Create User</h2>
+    <div class="content-section col-md-6">
+        <form method="POST">
+            {% csrf_token %}
+           <div class="form-group">
+                <label for="">Username</label>
+                {% render_field form.username autocomplete="off" class+="form-control" %}
+            </div>
+            <div class="form-group">
+                <label for="">Email</label>
+                {% render_field form.email type="email" autocomplete="off" class+="form-control" id="" %}
+            </div>
+            <div class="form-group">
+                <label for="">Password</label>
+                {% render_field form.password1 type="password" autocomplete="off" class+="form-control" id="" %}
+            </div>
+            <div class="form-group">
+                <label for="">Confirm Password</label>
+                {% render_field form.password2 type="password" autocomplete="off" class+="form-control" id="" %}
+            </div>
+        
+            {% if form.errors %}
+                <p class="validation-summary-errors">Please enter a correct user name and password.</p>
+            {% endif %}
+            <div class="form-group">
+                <button class="btn btn-success" type="submit">Create</button>
+            </div>
+            
+        </form>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+{% load staticfiles %}
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+  <script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
+
+{% endblock scripts %}

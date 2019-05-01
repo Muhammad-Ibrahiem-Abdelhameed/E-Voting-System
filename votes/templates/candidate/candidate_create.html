@@ -1,0 +1,38 @@
+{% extends "dashboard.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <br/>
+    <h2>Create Voter</h2>
+    <div class="content-section col-md-6">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="">Vote ID</label>
+                {% render_field form.vote_id class+="form-control" %}
+            </div>
+            <div class="form-group">
+                <label for="">Number in List</label>
+                {% render_field form.number_in_list class+="form-control" id="" %}
+            </div>
+            <div class="form-group">
+                <label for="">Name</label>
+                {% render_field form.name class+="form-control" %}
+            </div>
+            <div class="form-group">
+                <label for="">Image</label>
+                {% render_field form.image id="" %}
+            </div>
+            {% if form.errors %}
+            <ul>
+                {% for error in form.errors %} 
+                <li style="color:red">{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}  
+            <div class="form-group">
+                <input class="btn btn-success" type="submit" value="Create">
+            </div>
+        </form>
+    </div>
+{% endblock content %}

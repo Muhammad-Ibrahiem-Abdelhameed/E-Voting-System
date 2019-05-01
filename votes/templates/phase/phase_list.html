@@ -1,0 +1,45 @@
+{% extends "dashboard.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row">
+   <h1>Phase</h1>
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Date Start</th>
+            <th>Date End</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for phase in object_list %}
+            <tr scope="row">
+                <td>{{ phase.id }}</td>
+                <td>{{ phase.name }}</td>
+                <td>{{ phase.date_start }}</td>
+                <td>{{ phase.date_end }}</td>
+                <td>
+                <span>
+                <a href="{% url '/phase/edit/' phase.id %}">Edit</a>
+                <a></a>
+                </span>
+                </td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+    {% load staticfiles %}
+<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
+
+{% endblock %}

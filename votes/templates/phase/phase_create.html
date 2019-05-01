@@ -1,0 +1,33 @@
+{% extends "dashboard.html" %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h2>Phase Create</h2>
+    <br/>
+    <div class="content-section col-md-6 center">
+        <form method="POST" >
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="">Name</label>
+                {% render_field form.name autocomplete="off" class+="form-control" %}
+            </div>
+            <div class="form-group">
+                <label for="">Description</label>
+                {% render_field form.description autocomplete="off" class+="form-control" id="" %}
+            </div>
+            <div class="form-group">
+                <label for="">Date Start</label>
+                {% render_field form.date_start autocomplete="off" type="date" class+="form-control" id="" %}
+            </div>
+            <div class="form-group">
+                <label for="">Date End</label>
+                {% render_field form.date_end autocomplete="off" type="date" class+="form-control" id="" %}
+            </div>
+            <div class="form-group">
+                <input type="hidden" name="next" value="/" />
+                <button class="btn btn-success" type="submit">Create</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

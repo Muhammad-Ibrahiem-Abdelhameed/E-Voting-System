@@ -1,0 +1,71 @@
+{% extends "dashboard.html" %}
+
+
+{% block content %}
+
+<div class="row">
+   <h1>Candidates</h1>
+
+    <table class="table table-striped">
+        <thead class="bg-primary text-white">
+            <tr>
+            <th>Vote Id</th>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for candidate in object_list %}
+            <tr scope="row">
+                <td>{{ candidate.vote_id }}</td>
+                <td>{{ candidate.number_in_list }}</td>
+                <td>{{ candidate.name }}</td>
+                <td>{{ candidate.image }}</td>
+                <td>
+                    <a href="{% url 'candidate_update' candidate.id %}" class="btn btn-primary btn-sm">
+                    <span style="color: light;">
+                        <i class="fas fa-edit fa-lg"></i>
+                    </span>
+                    </a>
+                <!--<span class="glyphicon glyphicon-edit"></span>
+                    <a href="{% url "candidate_update" candidate.id %}">Edit</a>-->
+                    <!--<a href="{{'detail/'}}{{1}}">Detail</a>-->
+                </td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if is_paginated %}
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+    {% load staticfiles %}
+<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
+
+{% endblock %}

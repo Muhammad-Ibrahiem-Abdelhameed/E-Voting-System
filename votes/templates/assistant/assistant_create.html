@@ -1,0 +1,23 @@
+{% extends "dashboard.html" %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <br/>
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="">National Id</label>
+                {% render_field form.national_id autocomplete="off" class+="form-control" %}
+            </div>
+            <div class="form-group">
+                <label for="">Voting Id</label>
+                {% render_field form.voting_id autocomplete="off" class+="form-control" id="" %}
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success" type="submit">Create</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

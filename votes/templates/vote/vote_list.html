@@ -1,0 +1,37 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+
+<div class="row">
+   <h1>Votes</h1>
+
+    <table class="table table-striped">
+        <thead class="bg-primary text-white">
+            <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vote in object_list %}
+            <tr scope="row">
+                
+                <td>{{ vote.title }}</td>
+                <td>{{ vote.status }}</td>
+                <td>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+    {% load staticfiles %}
+<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
+
+{% endblock %}

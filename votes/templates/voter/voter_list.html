@@ -1,0 +1,37 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+
+<div class="row">
+   <h1>voters</h1>
+
+    <table class="table table-striped">
+        <thead class="bg-primary text-white">
+            <tr>
+            <th>National ID</th>
+            <th>User Name</th>
+            <th>Region</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for voter in object_list %}
+            <tr scope="row">
+                <td>{{ voter.national_id }}</td>
+                <td>{{ voter.user_id }}</td>
+                <td>{{ voter.region }}</td>
+                <td>{{ voter.votes }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+    {% load staticfiles %}
+<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
+
+{% endblock %}

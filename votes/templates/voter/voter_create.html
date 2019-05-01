@@ -1,0 +1,50 @@
+{% extends "dashboard.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <br/>
+    <h2>Create Voter</h2>
+    <div class="content-section col-md-6">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="">User ID</label>
+                {% render_field form.user_id class+="form-control" %}
+            </div>
+            <div class="form-group">
+                <label for="">National ID</label>
+                {% render_field form.national_id class+="form-control" %}
+            </div>
+            <div class="form-group">
+                <label for="">Birth Date</label>
+                {% render_field form.birth_date type="date" class+="form-control" id="" %}
+            </div>
+            <div class="form-group">
+                <label for="">Phone Number</label>
+                {% render_field form.phone_number type="tel" class+="form-control" id="" %}
+            </div>
+            <div class="form-group">
+                <label for="">Region</label>
+                {% render_field form.region class+="form-control" id="" %}
+            </div>
+            <div class="form-group">
+                <label for="">FingerPrint</label>
+                {% render_field form.fingerprint class+="form-control" id="" %}
+            </div>
+            <div class="form-group">
+                <label for="">Allow Phone</label>
+                {% render_field form.allow_phone  type="date" class+="form-control" id="" %}
+            </div>
+            {% if form.errors %}
+            <ul>
+                {% for error in form.errors %} 
+                <li style="color:red">{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}  
+            <div class="form-group">
+                <input class="btn btn-success" type="submit" value="Create">
+            </div>
+        </form>
+    </div>
+{% endblock content %}
